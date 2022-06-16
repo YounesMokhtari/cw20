@@ -55,13 +55,11 @@ class FormController extends Controller
         //     $request->all())
         // ;
         // dd($user);
-
-        if (User::create(
-            $request->all())
-        ) {
-            return redirect()->route('form.index')->with(['message' => 'success create new user']);
-            return redirect()->route('form.index')->with(['message' => 'soory  cant create  new user']);
-
+        $user = User::create(
+            $request->all()
+        );
+        if ($user) {
+            return redirect()->route('form.index')->with('message', 'Success');
         }
     }
 
